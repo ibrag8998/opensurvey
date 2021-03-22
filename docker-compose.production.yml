@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    restart: always
+  api:
+    restart: always
+    environment:
+      - SECRET_KEY=i9vvmzq#5x)*2l=ki4oe)(1)pe6^n&-jyheae=bz6dl3bm%ph0
+      - VIRTUAL_HOST=localhost
+      - ALLOWED_HOSTS=localhost
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
